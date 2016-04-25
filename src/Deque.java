@@ -3,10 +3,11 @@
  * An implementation of Deque
  */
 
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import edu.princeton.cs.algs4.StdOut;
 
 public class Deque<Item> implements Iterable<Item> {
     //nil is the sentinel, described in CLRS
@@ -30,7 +31,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     //return true if empty
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return count == 0;
     }
 
@@ -41,7 +42,8 @@ public class Deque<Item> implements Iterable<Item> {
     
     //add item to the beginning of the queue
     public void addFirst(Item item) {
-        //if(item == null) throw new NullPointerException("input null is fobbiden");        
+        if (item == null) throw new NullPointerException("input"
+                + " null is fobbiden");        
         
         Node<Item> first = new Node<Item>();
         first.next = nil.next;
@@ -54,7 +56,8 @@ public class Deque<Item> implements Iterable<Item> {
 
     //add item to the end of the queue
     public void addLast(Item item) {
-        //if(item == null) throw new NullPointerException("input null is fobbiden");
+        if (item == null) throw new NullPointerException("input"
+                + " null is fobbiden");
         
         Node<Item> last = new Node<Item>();
         last.prev = nil.prev;
@@ -91,15 +94,19 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     //new ListIterator class, remove() is forbidden
-    public class ListIterator<Item> implements Iterator<Item> {
+    private class ListIterator<Item> implements Iterator<Item> {
         private Node<Item> current;
         
-        public ListIterator(Node<Item> first) {
+        ListIterator(Node<Item> first) {
             current = first;
         }
         
-        public boolean hasNext() {return current != nil;}
-        public void remove() {throw new UnsupportedOperationException();}
+        public boolean hasNext() {
+            return current != nil;
+        }
+        public void remove() {
+            throw new UnsupportedOperationException();
+            }
         
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
@@ -122,7 +129,7 @@ public class Deque<Item> implements Iterable<Item> {
             StdOut.println(i);
         }        
         
-        while(true) {
+        while (true) {
             StdOut.println(q.removeLast());
         }
 
